@@ -15,7 +15,6 @@ button.style.color = 'white';
 // 2. an array to hold all the memes
 const memesArray = [
   'http://sportsmemes.s3.amazonaws.com/memes/6864/163-screen-shot-2020-07-09-at-5.01.53-pm.jpg',
-  'https://www.sportsmemes.net/meme/10328',
   'https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8yMzIyOTU1Mi9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTY0Nzg2NTA3MX0.VnIHsl-SjI1jvJhN_aDVSVRnY9P1PV8ID170UaUrDUc/img.jpg?width=980',
   'https://www.al.com/resizer/5nICahxduJa_Qx2JgOeb7EO-mIk=/1280x0/smart/advancelocal-adapter-image-uploads.s3.amazonaws.com/expo.advance.net/img/aef9d49266/width2048/763_oprahhomeschool.jpeg',
   'https://cdn.24.co.za/files/Cms/General/d/8627/f5d2bdaee88e450bb5c40fa1882e9d5f.png',
@@ -37,10 +36,6 @@ body.appendChild(button);
 
 //make button on click run a function
 button.addEventListener('click', () => {
-  //on click play music
-  let audio = new Audio('time-to-go-01.mp3');
-  audio.play();
-
   let counter = 5;
   button.innerHTML = `${counter} seconds left`;
   
@@ -59,15 +54,27 @@ button.addEventListener('click', () => {
       img.src = memesArray[Math.floor(Math.random() * memesArray.length - 1)];
       img.style.position = 'fixed';
       img.style.top = '10%';
-      img.style.left = '10%';
-      img.style.width = '50%x';
-      img.style.height = 'auto';
+      img.style.left = '35%';
+      // img.style.width = '5';
+      img.style.height = '50%';
       img.style.border = 'thick solid #0000FF';
       img.style.boxShadow = "10px 20px 30px grey";
       // img.style.alignContent = 'center';
 
       //append image - gets put on the page
       body.appendChild(img);
+
+      //on click play music
+      let audio = new Audio(
+        chrome.runtime.getURL('/mixkit-tech-house-vibes-130.mp3'),
+      );
+      audio.play();
+
+      setTimeout(() => {
+        body.removeChild(img);
+        button.style.display = 'block';
+        button.innerHTML = 'Get a new meme';
+      }, 5000)
     }
   }, 1000);
 });
