@@ -1,9 +1,18 @@
 {
   "manifest_version": 2,
-  "name": "Sports",
+  "name": "Distraction-App",
   "version": "1.0",
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": ["./main.js"]
-  }]
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "./main.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "/time-to-go-01.mp3"
+  ]
 }
