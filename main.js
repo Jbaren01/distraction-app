@@ -64,14 +64,17 @@ button.addEventListener('click', () => {
       //append image - gets put on the page
       body.appendChild(img);
 
+      const musicArray = ['/mixkit-tech-house-vibes-130.mp3', '/time-to-go-01.mp3'];
+
       //on click play music
       let audio = new Audio(
-        chrome.runtime.getURL('/mixkit-tech-house-vibes-130.mp3'),
+        chrome.runtime.getURL(musicArray[Math.floor(Math.random() * 2)]),
       );
       audio.play();
 
       setTimeout(() => {
         body.removeChild(img);
+        audio.pause();
         button.style.display = 'block';
         button.innerHTML = 'Get a new meme';
       }, 5000)
